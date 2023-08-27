@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <Navbar setIsCreating={setIsCreating} />
-      <main className="flex gap-[8px] flex-wrap">
+      <main className="flex gap-[35px] flex-wrap">
         {notes.length !== 0 && (
           <SortableContext items={notes}>
             {notes.map((note) => (

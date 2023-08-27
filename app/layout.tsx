@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${InstrumentSans.className} min-h-[100svh] bg-dark text-white`}
+        className={`${InstrumentSans.className} min-h-[100svh] bg-dark text-white overflow-hidden`}
       >
-        <main className="max-w-[1300px] mx-auto px-[24px]">{children}</main>
+        <main className="max-w-[1273px] mx-auto px-[24px]">{children}</main>
       </body>
     </html>
   );

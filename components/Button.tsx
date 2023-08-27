@@ -1,16 +1,17 @@
 import Image from 'next/image';
 
 interface Props {
-  handleClick: (e: React.FormEvent) => void | (() => void);
+  handleClick?: (e: React.FormEvent) => void | (() => void);
   height?: string;
   width?: string;
   color?: string;
-  text: string;
+  text?: string;
   icon?: string;
   rounded?: string;
   isActionBtn?: boolean;
   iconSize?: [number, number];
   type?: 'button' | 'submit' | 'reset';
+  fontSize?: string;
 }
 
 export default function Button({
@@ -24,12 +25,13 @@ export default function Button({
   isActionBtn,
   iconSize,
   type,
+  fontSize
 }: Props) {
   return (
     <button
       type={type || 'button'}
       onClick={handleClick}
-      className={`flex items-center text-white justify-center font-bold gap-[18px] transition-colors ${
+      className={`flex items-center text-white justify-center font-bold gap-[18px] transition-colors ${fontSize} ${
         width || 'w-full'
       } ${height || 'h-[47px]'} ${rounded || 'rounded-[10px]'} ${
         color || 'bg-primary border-[2px] border-primary hover:bg-white/5'
