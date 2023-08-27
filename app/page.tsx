@@ -2,6 +2,7 @@
 
 import Form from '@/components/Form';
 import Modal from '@/components/Modal';
+import Navbar from '@/components/Navbar';
 import Note from '@/components/Note';
 import { NoteProps } from '@/types';
 import { DndContext, closestCenter, DragEndEvent } from '@dnd-kit/core';
@@ -10,19 +11,19 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [notes, setNotes] = useState<NoteProps[] | []>([]);
+  const [isCreating, setIsCreating] = useState(false);
+  const [form, setForm] = useState({
+    title: '',
+    text: '',
+  });
+
   let noteArray: string | null = null;
 
   if (typeof window !== 'undefined') {
     // Perform localStorage action
     noteArray = localStorage.getItem('notes');
   }
-
-  const [notes, setNotes] = useState<NoteProps[] | []>([]);
-  const [form, setForm] = useState({
-    title: '',
-    text: '',
-  });
-  const [isCreating, setIsCreating] = useState(false);
 
   useEffect(() => {
     if (noteArray) {
@@ -107,16 +108,7 @@ export default function Home() {
 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      {isCreating && (
-        <Modal setIsActive={setIsCreating}>
-          <Form
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            form={form}
-          />
-        </Modal>
-      )}
-      <button onClick={() => setIsCreating(true)}>Create Note</button>
+      <Navbar setIsCreating={setIsCreating} />
       <main className="flex gap-[8px] flex-wrap">
         {notes.length !== 0 && (
           <SortableContext items={notes}>
@@ -133,6 +125,17 @@ export default function Home() {
           </SortableContext>
         )}
       </main>
+      {isCreating && (
+        <Modal setIsActive={setIsCreating}>
+          <Form
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            form={form}
+            type='create'
+            setIsActive={setIsCreating}
+          />
+        </Modal>
+      )}
     </DndContext>
   );
 }

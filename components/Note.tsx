@@ -3,7 +3,6 @@ import { CSS } from '@dnd-kit/utilities';
 import { useState } from 'react';
 import Modal from './Modal';
 import Form from './Form';
-import { NoteProps } from '@/types';
 
 export default function Note({
   title,
@@ -26,6 +25,12 @@ export default function Note({
     title: string;
   }) => void;
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState({
+    title: title,
+    text: text,
+  });
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: id });
 
@@ -33,12 +38,6 @@ export default function Note({
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
-  const [editForm, setEditForm] = useState({
-    title: title,
-    text: text,
-  });
-  const [isEditing, setIsEditing] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -72,14 +71,14 @@ export default function Note({
         <p className="text-black h-full">{text}</p>
       </div>
       <p
-        className="absolute top-0 right-0 text-red-500"
+        className="absolute top-0 right-0 text-red"
         onClick={() => deleteNote(id)}
       >
         Delete
       </p>
       <h2
         onClick={() => setIsEditing(true)}
-        className="text-black hover:text-green-400 bg-red-300 z-50 absolute top-0"
+        className="text-black hover:text-green-400 bg-red absolute top-0"
       >
         {title}
       </h2>
@@ -89,6 +88,8 @@ export default function Note({
             form={editForm}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            type="edit"
+            setIsActive={setIsEditing}
           />
         </Modal>
       )}
