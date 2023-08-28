@@ -66,7 +66,7 @@ export default function Note({
   };
 
   return (
-    <div style={style} className="relative group">
+    <div style={style} className="relative group w-full">
       <div
         ref={setNodeRef}
         {...attributes}
@@ -83,7 +83,7 @@ export default function Note({
           </p>
         </div>
       </div>
-      <article className="md:hidden group-hover:block absolute bottom-0 left-0 right-0 h-[77px] bg-gradient bg-no-repeat bg-cover rounded-b-[13px] overflow-hidden border-[2px] border-gray-light border-t-0">
+      <article className="md:hidden group-hover:block absolute bottom-0 left-0 right-0 h-[77px] bg-gradient bg-no-repeat bg-cover rounded-b-[13px] overflow-hidden border-[2px] border-gray-light border-t-0 md:w-[280px]">
         <div className="w-full h-full bg-white/5 backdrop-blur-[40.7px] flex items-center justify-center gap-[10.7px]">
           <Button
             text="Show More"
