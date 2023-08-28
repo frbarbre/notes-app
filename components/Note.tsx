@@ -66,7 +66,7 @@ export default function Note({
   };
 
   return (
-    <div style={style} className="relative group w-full">
+    <div style={style} className="relative group w-full md:w-auto">
       <div
         ref={setNodeRef}
         {...attributes}
