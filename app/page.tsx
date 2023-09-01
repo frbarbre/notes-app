@@ -110,7 +110,7 @@ export default function Home() {
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <Navbar setIsCreating={setIsCreating} />
       <main className="flex gap-[35px] flex-wrap">
-        {notes.length !== 0 && (
+        {notes.length !== 0 ? (
           <SortableContext items={notes}>
             {notes.map((note) => (
               <Note
@@ -123,6 +123,10 @@ export default function Home() {
               />
             ))}
           </SortableContext>
+        ) : (
+          <p className="text-center text-2xl text-gray-400 w-full">
+            No notes yet. Click the plus button to create one.
+          </p>
         )}
       </main>
       {isCreating && (
@@ -131,7 +135,7 @@ export default function Home() {
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             form={form}
-            type='create'
+            type="create"
             setIsActive={setIsCreating}
           />
         </Modal>
