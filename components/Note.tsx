@@ -78,7 +78,7 @@ export default function Note({
             {title}
           </h2>
           <hr className="w-full border-primary mt-[8px] pb-[10px]" />
-          <p className="mb-[24px] leading-[23.2px] h-[276px] overflow-hidden">
+          <p className="mb-[24px] leading-[23.2px] h-[276px] overflow-hidden whitespace-pre-line">
             {text}
           </p>
         </div>

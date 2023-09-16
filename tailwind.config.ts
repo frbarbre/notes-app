@@ -13,7 +13,7 @@ const config: Config = {
         "dark-gray": "#101010",
         gray: "#121212",
         "gray-light": "#313131",
-        primary: "#6910DA",
+        primary: "#FF007F",
         red: "#AB192A",
       },
       backgroundImage: {
